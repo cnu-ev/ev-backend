@@ -1,7 +1,7 @@
-from django.conf.urls import include, path, re_path
+from django.urls import include, path, re_path
 from . import views
 
-app_name = blog
+app_name = 'blog'
 
 urlpatterns=[
     # / 의 경우
@@ -22,14 +22,14 @@ urlpatterns=[
     re_path('(?P<year>\d{4})',views.PostYAV.as_view(), name='post_year_archive'),
 
     # /2019/nov
-    re_path('(?P<year>\d{4})/(?P<month<[a-z]{3}',views.PostMAV.as_view(), name='post_month_archive'),
+    re_path('(?P<year>\d{4})/(?P<month>[a-z]{3})',views.PostMAV.as_view(), name='post_month_archive'),
 
     # /2019/nov/10
-    re_path('(?P<year>\d{4})/(?P<month<[a-z]{3}/(?P<day>\d{1,2})',views.PostDAV.as_view(), name='post_day_archive'),
+    re_path('(?P<year>\d{4})/(?P<month>[a-z]{3})/(?P<day>\d{1,2})',views.PostDAV.as_view(), name='post_day_archive'),
 
     # /today/
     re_path('today',views.PostTAV, name='post_today_archive'),
 
-    
+
 
 ]

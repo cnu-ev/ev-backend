@@ -2,8 +2,8 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.generic import ListView, DetailView
-from django.vies.generic.dates import ArchiveIndexView, YearArchiveView,MonthArchiveView
-from django.views.getneric.dates import DayArchiveView, TodayArchiveView
+from django.views.generic.dates import ArchiveIndexView, YearArchiveView,MonthArchiveView
+from django.views.generic.dates import DayArchiveView, TodayArchiveView
 
 from blog.models import Post
 
@@ -11,7 +11,7 @@ from blog.models import Post
 class PostLV(ListView):
     model = Post
     template_name = 'blog/post_all.html'
-    conetx_object_name = 'posts'
+    context_object_name = 'posts'
     paginate_by = 2
 
 # DetailView
