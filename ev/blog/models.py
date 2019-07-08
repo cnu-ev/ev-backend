@@ -3,6 +3,8 @@ from django.urls import reverse
 
 
 # Create your models here.
+
+# 글쓰기에 관한 모델 Post
 class Post(models.Model):
     title = models.CharField('TITLE', max_length=50)
     slug = models.SlugField('SLUG', unique=True, allow_unicode=True, help_text='one word for title alias')
@@ -31,3 +33,12 @@ class Post(models.Model):
 
     def get_next_post(self):
         return self.get_next_by_modify_date()
+
+
+
+# class Comment(models.Model):
+#     post = models.ForeignKey(Post, on_delete = models.CASCADE, null=True, related_name = 'comments')
+#     comment_date = models.DateTimeField(auto_now_add=True)
+#     comment_contents = models.CharField(max_length=200)
+#
+
