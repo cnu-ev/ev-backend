@@ -1,3 +1,17 @@
+{% if object.emotion_propotion < 50 %}
+<style>
+    p{
+        color: red;
+    }
+</style>
+{% else %}
+<style>
+    p{
+        color : blue;
+    }
+</style>
+{% endif %}
+
 <h2> {{object.title}} </h2>
 
 <p class = "other_posts">
@@ -7,8 +21,22 @@
 </p>
 
 <p class="date">{{object.modify_date|date:"j F Y"}}</p>
+<div class="writer">
+    writer : {{ object.post_writer}}
+</div>
 <br/>
 
 <div class="body">
     {{ object.content|linebreaks}}
 </div>
+<hr>
+
+{% for comment in object.comments.all %}
+    <div class="comment">
+        <div class="date"> {{comment.comment_date}}</div>
+        <strong>{{comment.comment_writer}}</strong>
+    </div>
+<p> {{ comment.comment_contents }}</p>
+{% empty %}
+<p> No Comments Here</p>
+{% endfor %}
