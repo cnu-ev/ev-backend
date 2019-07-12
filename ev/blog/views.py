@@ -1,7 +1,9 @@
 from django.shortcuts import render
 
+
 # Create your views here.
-from django.views.generic import ListView, DetailView
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
+from django.views.generic import ListView, DetailView, View
 from django.views.generic.dates import ArchiveIndexView, YearArchiveView,MonthArchiveView
 from django.views.generic.dates import DayArchiveView, TodayArchiveView
 
@@ -17,6 +19,8 @@ class PostLV(ListView):
 # DetailView
 class PostDV(DetailView):
     model = Post
+    def post_something(request):
+        return render(request,'blog/post_test.html')
 
 # ArchiveView
 class PostAV(ArchiveIndexView):
@@ -39,3 +43,6 @@ class PostDAV(DayArchiveView):
 class PostTAV(TodayArchiveView):
     model = Post
     date_field = 'modify_date'
+
+def PostTest(request):
+    print(request)

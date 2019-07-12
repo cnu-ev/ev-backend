@@ -10,6 +10,8 @@ urlpatterns=[
     # post/의 경우
     path('post/',views.PostLV.as_view(),name='post_list'),
 
+    path('post/test',views.PostTest,name='post_test'),
+
     # 여기서부터는 정규식
 
     # /post/django-example/과 같은 slug를 가진 주소의 경우
