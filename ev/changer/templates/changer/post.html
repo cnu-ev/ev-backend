@@ -1,0 +1,22 @@
+<!-- 단순히 데이터 전송에 필요한 부분을 담은 템플릿. 별다른 기능은 없음-->
+<!-- 가공된 데이터를 FORM 양식을 통해 다시 POST METHOD로 상대 url에게 전달하는 목적-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+    function load(){
+        window.document.changer.submit();
+        return;
+    }
+</script>
+</head>
+<body onload="load()">
+<form name="changer" method="post" action="http://localhost:8001/polls/number">
+    {% csrf_token %}
+    <input type="hidden" name="comment" value="{{comment}}"/>
+</form>
+
+</body>
+</html>
