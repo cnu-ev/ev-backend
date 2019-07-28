@@ -2,6 +2,7 @@ import json
 
 from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse
+from . import main
 
 # Create your views here.
 # 테스트용 메인 페이지
