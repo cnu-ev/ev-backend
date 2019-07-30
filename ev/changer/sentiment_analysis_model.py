@@ -5,6 +5,7 @@ from tensorflow.keras import layers
 from tensorflow.keras import optimizers
 from tensorflow.keras import losses
 from tensorflow.keras import metrics
+from tensorflow.keras.models import load_model
 import tensorflow as tf
 
 from . import word2vec_embedder
@@ -31,7 +32,7 @@ class Sentiment_analysis_model:
                  metrics=[metrics.binary_accuracy])
 
         self.run_model.fit(self.x_train, self.y_train, epochs=10, batch_size=512)
-        self.graph = tf.get_default_graph()
+        self.save_model()
 
     def model_evaluate(self,testDataVecs,test_tags):
         x_test = testDataVecs
@@ -41,14 +42,27 @@ class Sentiment_analysis_model:
 
 
     def predict_pos_neg(self,review,word2vec_model,num_features):
-        with self.graph.as_default():
-            token = data_preprocessor.tokenize(review)
-            reviewFeatureVecs = np.zeros((1,num_features),dtype="float32")
-            reviewFeatureVecs[0] = review_vec = word2vec_embedder.makeFeatureVec(token, word2vec_model, num_features)
-            score = float(self.run_model.predict(reviewFeatureVecs))
+        token = data_preprocessor.tokenize(review)
+        reviewFeatureVecs = np.zeros((1,num_features),dtype="float32")
+        reviewFeatureVecs[0] = review_vec = word2vec_embedder.makeFeatureVec(token, word2vec_model, num_features)
+        score = float(self.run_model.predict(reviewFeatureVecs))
 
         return review, score * 100 - 50
 
+    def predict_pos_neg_by_loaded_model(self,review,word2vec_model,num_features):
+        token = data_preprocessor.tokenize(review)
+        reviewFeatureVecs = np.zeros((1,num_features),dtype="float32")
+        reviewFeatureVecs[0] = review_vec = word2vec_embedder.makeFeatureVec(token, word2vec_model, num_features)
+        model = self.load_keras_model()
+        score = float(model.predict(reviewFeatureVecs))
 
+        return review, score * 100 - 50
+
+    def save_model(self):
+        self.run_model.save('model.h5')
+
+    def load_keras_model(self):
+        model = load_model('model.h5')
+        return model
 
     # predict_pos_neg("아 이규봉이 디자인한 댓글페이지 좋은데요? 추천합니다 사용할께요",run_model)
