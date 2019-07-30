@@ -35,11 +35,11 @@ from . import sentiment_analysis_model
 
 
 class Sentiment_analysis:
-    def __init__(self,train_text_dir,test_text_dir):
+    def __init__(self):
         #전처리 완료된 학습데이터 경로
 
         #data_manager 생성
-        self.data_manager_test2 = data_manager.Data_manager(train_text_dir, test_text_dir)
+        self.data_manager_test2 = data_manager.Data_manager()
 
         train_sentences = self.data_manager_test2.get_train_sentences()
         train_tags = self.data_manager_test2.get_train_tags()
