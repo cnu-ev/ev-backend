@@ -5,6 +5,7 @@ from tensorflow.keras import layers
 from tensorflow.keras import optimizers
 from tensorflow.keras import losses
 from tensorflow.keras import metrics
+import tensorflow as tf
 
 from . import word2vec_embedder
 from . import data_preprocessor
@@ -30,6 +31,7 @@ class Sentiment_analysis_model:
                  metrics=[metrics.binary_accuracy])
 
         self.run_model.fit(self.x_train, self.y_train, epochs=10, batch_size=512)
+        self.graph = tf.get_default_graph()
 
     def model_evaluate(self,testDataVecs,test_tags):
         x_test = testDataVecs
@@ -39,14 +41,13 @@ class Sentiment_analysis_model:
 
 
     def predict_pos_neg(self,review,word2vec_model,num_features):
-        token = data_preprocessor.tokenize(review)
-        reviewFeatureVecs = np.zeros((1,num_features),dtype="float32")
-        reviewFeatureVecs[0] = review_vec = word2vec_embedder.makeFeatureVec(token, word2vec_model, num_features)
-        score = float(self.run_model.predict(reviewFeatureVecs))
-        if(score > 0.5):
-            print("[{}]는 {:.2f}% 확률로 긍정 리뷰\n".format(review, score * 100))
-        else:
-            print("[{}]는 {:.2f}% 확률로 부정 리뷰\n".format(review, (1 - score) * 100))
+        with self.graph.as_default():
+            token = data_preprocessor.tokenize(review)
+            reviewFeatureVecs = np.zeros((1,num_features),dtype="float32")
+            reviewFeatureVecs[0] = review_vec = word2vec_embedder.makeFeatureVec(token, word2vec_model, num_features)
+            score = float(self.run_model.predict(reviewFeatureVecs))
+
+        return review, score * 100 - 50
 
 
 

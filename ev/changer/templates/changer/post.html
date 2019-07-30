@@ -13,9 +13,10 @@
 </script>
 </head>
 <body onload="load()">
-<form name="changer" method="post" action="http://localhost:8001/polls/number">
+<form name="changer" method="post" action="https://">
     {% csrf_token %}
     <input type="hidden" name="comment" value="{{comment}}"/>
+    <input type="hidden" name="score" value="{{score}}"/>
 </form>
 
 </body>

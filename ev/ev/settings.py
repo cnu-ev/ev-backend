@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '9=zy0tjc#2q&4n!9%h%8+2m-m#_-#y*4z9qov=5adq#^1%_xld'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -51,6 +51,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+]
+MIDDLEWARE_CLASSES=[
+    'ev.middleware_test.DisableCSRF',
 ]
 
 ROOT_URLCONF = 'ev.urls'
