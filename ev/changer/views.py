@@ -27,9 +27,8 @@ def changer(request):
 
 @csrf_exempt
 def comment(request):
-    # info = request.POST['commentContent']
-    sentence ,score = sentiment_analysis.Sentiment_analysis_predict_pos_neg("안녕하세요.")
-    print(score)
+    info = request.POST['commentContent']
+    sentence ,score = sentiment_analysis.Sentiment_analysis_predict_pos_neg(info)
     ##  가공된 데이터를 render하지만, 자동으로 상대에게 form 전송 action이 취해짐.
     # #return render_to_response('changer/post.html',{'comment':sentence,'score':score})
     return HttpResponse(str(score))

@@ -1,9 +1,9 @@
 import pickle
-import data_preprocessor
+from . import data_preprocessor
 
 class Data_manager:
-    preprocessed_train_text_dir = './data_set_to_pickle/train_text_set.pkl'
-    preprocessed_test_text_dir = './data_set_to_pickle/test_text.pkl'
+    preprocessed_train_text_dir = '/home/radi/ev-backend/ev/changer/data_set_to_pickle/train_text_set.pkl'
+    preprocessed_test_text_dir = '/home/radi/ev-backend/ev/changer/data_set_to_pickle/test_text.pkl'
     def __init__(self):
         self.train_text = self.load_data(self.preprocessed_train_text_dir)
         self.test_text = self.load_data(self.preprocessed_test_text_dir)

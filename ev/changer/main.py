@@ -53,7 +53,7 @@ class Sentiment_analysis:
         #embedding 된 vector_set과 정답지로 Sentiment_analysis 모델 생성
         self.sentiment_analysis_model_test = sentiment_analysis_model.Sentiment_analysis_model(trainDataVecs,train_tags)
     def Sentiment_analysis_predict_pos_neg(self,sentence):
-        sentence, score = self.sentiment_analysis_model_test.predict_pos_neg(sentence,self.word2vec_embedder_test.model,self.word2vec_embedder_test.num_features)
+        sentence, score = self.sentiment_analysis_model_test.predict_pos_neg_by_loaded_model(sentence,self.word2vec_embedder_test.model,self.word2vec_embedder_test.num_features)
         return sentence,score
 
 
