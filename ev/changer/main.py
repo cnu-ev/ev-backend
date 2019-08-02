@@ -6,7 +6,7 @@ from . import word2vec_embedder
 # from sentiment_analysis_model import Sentiment_analysis_model
 from . import sentiment_analysis_model
 # import word2vec_embedder as word2vec_embbeding_module
-
+import pickle
 # data_preprocessor = Data_preprocessor()
 
 # #전처리 완료된 학습데이터 경로
