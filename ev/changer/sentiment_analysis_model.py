@@ -6,7 +6,7 @@ from tensorflow.keras import optimizers
 from tensorflow.keras import losses
 from tensorflow.keras import metrics
 from tensorflow.keras.models import load_model
-import tensorflow as tf
+
 
 from . import word2vec_embedder
 from . import data_preprocessor
@@ -15,7 +15,7 @@ class Sentiment_analysis_model:
     def __init__(self, trainDataVecs , train_tags):
         self.x_train = trainDataVecs
         self.y_train = np.asarray(train_tags).astype('float32')
-        self.make_model()
+        self.run_model = self.load_keras_model()
 
 # print(len(x_train))
 
@@ -64,5 +64,10 @@ class Sentiment_analysis_model:
     def load_keras_model(self):
         model = load_model('model.h5')
         return model
+
+    def set_x_train(trainDataVecs):
+        self.x_train = trainDataVecs
+    def set_y_train(train_tags):
+        self.y_train
 
     # predict_pos_neg("아 이규봉이 디자인한 댓글페이지 좋은데요? 추천합니다 사용할께요",run_model)
