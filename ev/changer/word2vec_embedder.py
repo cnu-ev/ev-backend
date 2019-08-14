@@ -65,10 +65,10 @@ class Word2vec_embedder:
                                   sample=self.downsampling)
         # 학습이 완료 되면 필요없는 메모리를 unload 시킨다.
         self.model.init_sims(replace=True)
-        self.model.save("word2vec.model")
+        self.model.save("/home/radi/ev-backend/ev/word2vec.model")
 
     def get_model(self):
         return self.model
 
     def load_model(self):
-        return word2vec.Word2Vec.load('word2vec.model')
+        return word2vec.Word2Vec.load('/home/radi/ev-backend/ev/word2vec.model')

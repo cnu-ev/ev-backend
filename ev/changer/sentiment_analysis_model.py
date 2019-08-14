@@ -59,10 +59,10 @@ class Sentiment_analysis_model:
         return review, score * 100 - 50
 
     def save_model(self):
-        self.run_model.save('model.h5')
+        self.run_model.save('/home/radi/ev-backend/ev/model.h5')
 
     def load_keras_model(self):
-        model = load_model('model.h5')
+        model = load_model('/home/radi/ev-backend/ev/model.h5')
         return model
 
     def set_x_train(trainDataVecs):

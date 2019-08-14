@@ -48,7 +48,7 @@ class Sentiment_analysis:
         self.word2vec_embedder_test = word2vec_embedder.Word2vec_embedder(train_sentences)
 
         #word2vec 방식으로 embedding 된 vector_set
-        with open('trainDataVecs.pkl', 'rb') as f:
+        with open('/home/radi/ev-backend/ev/trainDataVecs.pkl', 'rb') as f:
             trainDataVecs = pickle.load(f)
         #embedding 된 vector_set과 정답지로 Sentiment_analysis 모델 생성
         self.sentiment_analysis_model_test = sentiment_analysis_model.Sentiment_analysis_model(trainDataVecs,train_tags)
