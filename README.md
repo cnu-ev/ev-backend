@@ -1,10 +1,14 @@
+
 # ev-backend
 ## CNU CSE Bottom-Up Project Team-Ev
- 분석사이트를 제작하는 Team-Ev의 backend repository 입니다.  
+ 분석사이트를 제작하는 Team-Ev의 backend server repository 입니다.  
  Django를 기반으로 제작되었으며, konlpy와 tensorflow 를 기반으로 하는 감정분석 판별기를 포함합니다.
  
- ## How to Use
- ##### FrontServer에서 /changer/comment url로 Post를 날리면, 해당 POST를 request에서 읽어와, 미리 생성된 감정분석 모델에 대입, 부정 및 긍정의 수치를 score의 형태로 다시 HttpResponse합니다. Front에서는 이 Score 데이터를 기반으로 댓글을 감정에 기반한 시각화 작업을 실시하게 됩니다.
+ ## How to Work  
+ #### 1. 기본동작  
+ ##### Front에서 받아온 데이터를 python 코드로 작성된 감정분석기를 통해 긍정/부정 정도를 수치화 합니다. 이후 다시 지정된 url로 수치화한 데이터를 보내면 Front에서는 이 데이터를 바탕으로 감정분석 표시를 진행합니다. 현재 저장소에 올라온 파일들에는 파일 크기 문제로 인해 모델 및 데이터의 일부가 올라오지 않은 상태입니다.  
+ #### 2. Report 기능  
+ ##### 사용자의 의도와는 다른 감정 분석 결과가 나올 경우, 사용자는 Front에서 report를 서버로 제출합니다. backend에서는 이 데이터를 txt 파일 화 시켜 보관 후, 일정 이상량이 데이터가 모이게 되면 report 데이터를 바탕으로 다시 학습을 재개합니다.  
  
 
 ### Environment
